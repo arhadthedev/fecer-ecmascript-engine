@@ -1,0 +1,10 @@
+[package]
+name = "fecer-ecmascript-engine"
+version = "0.0.1-dev"
+authors = ["Oleg Iarygin <oleg@arhadthedev.net>"]
+edition = "2021"
+description = "Extensible optimizing interpreter library for ECMAScript"
+repository = "https://github.com/arhadthedev/fecer-scripting"
+license = "MIT"
+keywords = ["javascript", "ecmascript"]
+categories = ["compilers", "parsing", "web-programming"]
