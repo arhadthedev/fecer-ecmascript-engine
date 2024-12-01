@@ -34,13 +34,6 @@ pub enum Symbol {
 ///
 /// Returns an input sequence with the consolidation replacement applied.
 ///
-/// # Errors
-///
-/// When no replacement rule can be applied, returns an unmodified input wrapped
-/// into `Err`.
-///
-/// # Examples
-///
 /// ```
 /// use fecer_ecmascript_engine::parser::{reduce_once, Symbol};
 /// use std::iter::once;
@@ -64,7 +57,10 @@ pub enum Symbol {
 /// }
 /// ```
 ///
-/// When no grammar rule can be applied, the function returns `Err`:
+/// # Errors
+///
+/// When no replacement rule can be applied, returns an unmodified input wrapped
+/// into `Err`.
 ///
 /// ```
 /// use fecer_ecmascript_engine::parser::reduce_once;
