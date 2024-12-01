@@ -32,7 +32,14 @@ pub enum Symbol {
 /// a sequence with a root symbol like Script or Module. Anything else means
 /// a parse error.
 ///
-/// # Example
+/// Returns an input sequence with the consolidation replacement applied.
+///
+/// # Errors
+///
+/// When no replacement rule can be applied, returns an unmodified input wrapped
+/// into Err.
+///
+/// # Examples
 ///
 /// ```
 /// use fecer_ecmascript_engine::parser::{reduce_once, Symbol};
