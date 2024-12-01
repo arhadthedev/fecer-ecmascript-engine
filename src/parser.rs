@@ -22,22 +22,22 @@ pub enum Symbol {
 /// sentences, sentence lists, blocks, functions, and a script file.
 ///
 /// As a result, a user of the functions needs to consolidate already fed source
-/// code as much as possible by calling the function until it returns Err. Only
-/// after the consolidation another source code character may be read into the
-/// end of a consolidated sequence followed by another round of consolidations.
+/// code as much as possible by calling the function until it returns `Err`.
+/// Only after the consolidation another source code character may be read into
+/// the end of a consolidated sequence followed by another consolidation round.
 ///
-/// When no more input character is available, a special Symbol::Eof needs to be
-/// added into the consolidated sequence. This step determines whether another
-/// returned Err means success or not. For the former, the Err contains
-/// a sequence with a root symbol like Script or Module. Anything else means
-/// a parse error.
+/// When no more input character is available, a special `Symbol::Eof` needs
+/// to be added into the consolidated sequence. This step determines whether
+/// another returned `Err` means success or not. For the former, the `Err`
+/// contains a sequence with a root symbol like `Symbol::Script`
+/// or `Symbol::Module`. Anything else means a parse error.
 ///
 /// Returns an input sequence with the consolidation replacement applied.
 ///
 /// # Errors
 ///
 /// When no replacement rule can be applied, returns an unmodified input wrapped
-/// into Err.
+/// into `Err`.
 ///
 /// # Examples
 ///
@@ -64,7 +64,7 @@ pub enum Symbol {
 /// }
 /// ```
 ///
-/// When no grammar rule can be applied, the function returns Err:
+/// When no grammar rule can be applied, the function returns `Err`:
 ///
 /// ```
 /// use fecer_ecmascript_engine::parser::reduce_once;
