@@ -75,7 +75,6 @@ pub fn reduce_once(stack: Vec<Symbol>) -> Result<Vec<Symbol>, Vec<Symbol>> {
     let mut top = stack.iter().rev();
     match top.next() {
         // Both branches return err until we add some proper rule
-        Some(_) => Err(stack),
-        None => Err(stack)
+        None | Some(_) => Err(stack),
     }
 }
