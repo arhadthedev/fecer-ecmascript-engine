@@ -1,18 +1,17 @@
-//! ECMA-262 15.0 LALR(1) stream parser.
+//! ECMA-262 15.0 LALR(1) push parser.
 //!
-//! Implements sections 11-16 (every "ECMAScript Language: ...").
-//!
-//! A stream parser acts like the SAX XML one. Instead of creating a syntax tree
-//! it creates a stream of grammar rule replacements, eagerly starting bottom-up
-//! with, for example, `Terminal Identifier → Identifier` and ending
-//! with `FuncList → Program`.
+//! Implements sections 11-16 (every "ECMAScript Language...") of the standard.
 
-/// Grammar symbols the parser works with.
+/// Mixed grammar symbols pushed into the parser stack.
+///
+/// This enum allows to push grammar symbols of various degrees of readiness.
+/// Also, it contains special tokens like `Symbol::SourceCharacter`
+/// and `Symbol::Eof`.
 #[derive(Debug, Eq, PartialEq)]
 pub enum Symbol {
     SourceCharacter(u16),
 
-    Eof
+    Eof,
 }
 
 /// Apply ("reduce") a fitting replacement rule to a grammar symbol stack top.
@@ -29,7 +28,7 @@ pub enum Symbol {
 /// When no more input character is available, a special `Symbol::Eof` needs
 /// to be added into the consolidated sequence. This step determines whether
 /// another returned `Err` means success or not. For the former, the `Err`
-/// contains a sequence with a root symbol like `Symbol::Script`
+/// contains a sequence with a goal symbol like `Symbol::Script`
 /// or `Symbol::Module`. Anything else means a parse error.
 ///
 /// Returns an input sequence with the consolidation replacement applied.
